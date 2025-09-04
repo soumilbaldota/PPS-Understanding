@@ -106,9 +106,6 @@ We `decrease` the coherence score when there is `less than one` matching subject
 *Optimization Note:  we don't need to check coherence for every item in the conversation as we when we have score more than 1 we know that both items are in context of each other, and the score will end up being increased by 2, as the match would be found for the same subject again.*
 
 
-Questions to ask in class:
-1. Does a pause empty the context set ?
-
 ## Importance
 
 This is an easy metric, just maintain a sum of importance.
@@ -131,12 +128,6 @@ If item is repeated:
 - `importance=0`
 - Does not contribute to coherence score.
 
-Questions to ask:
-
-1. When we say "does not contribute to coherence score", do we consider it both in negative and positive cases, where say we have 7 copies of the same item `["i1", "i1", "i1", "i1", "i1", "i1", "i1" ]` and obviously they have the same subjects so for the first instance of `i1`, and the context set has the same subjects for the first index so coherence goes up by 1. Then in the second instance,
-
- - do we ignore it because it is a repeating item ?
- - or do we reduce the coherence score by 1 as we ignore the subjects of all repeating items and the ?
 
 ## Freshness
 
