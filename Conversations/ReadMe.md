@@ -62,6 +62,8 @@ else:
 
 > Note :- the personLastSpoke wants to speak again his probability is fixed at 0.5
 
+# Collective Goals
+
 ## Coherence of a conversation
 
 This is a tricky one just because of the wording.
@@ -176,3 +178,34 @@ for index, item in enumerate(convo):
         net_score -= 1
 
 ```
+
+# Individual Goals
+
+This is slightly tricky, so let's break this down.
+
+> Each player is given a permutation of len S.
+
+This means the player gets an array of integers from 1 to S, randomly arranged.
+
+like this, if there a total of 4 subjects, i.e. `S=4` then we have `ranks = randomize([1, 2, 3, 4])`
+
+we can use the formula for each item if there are 2 subjects, 1 - (k<sub>1</sub> + k<sub>2</sub>) / 2S
+
+we can use the formula for each item if there are 1 subjects, 1 - (k) / S
+
+```python
+subjects = [["Messi"], ["football", "golf"]]
+S = len(flatten(subjects))
+convo = ["Messi plays football", "Woods plays golf"]
+rank = [[2], [1,3]]
+score = 0
+for index, item in enumerate(convo):
+    rank_sum = sum([rank for rank in rank[index]])
+    rank_count = len(rank[index])
+    if rank_count == 1:
+        score +=  1 - rank_sum / S
+    else:
+        score += 1 - rank_sum/ (S * 2)
+```
+
+
