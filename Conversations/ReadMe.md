@@ -136,7 +136,10 @@ Questions to ask:
 1. When we say "does not contribute to coherence score", do we consider it both in negative and positive cases, where say we have 7 copies of the same item `["i1", "i1", "i1", "i1", "i1", "i1", "i1" ]` and obviously they have the same subjects so for the first instance of `i1`, and the context set has the same subjects for the first index so coherence goes up by 1. Then in the second instance,
 
  - do we ignore it because it is a repeating item ?
+    scores are independently calculated.
  - or do we reduce the coherence score by 1 as we ignore the subjects of all repeating items and the ?
+     we do not ignore them we simple calculate the coherence score.
+
 
 ## Freshness
 
@@ -185,3 +188,11 @@ for index, item in enumerate(convo):
         net_score -= 1
 
 ```
+
+
+## Idea:
+- optimize by avoiding negative penalties
+- zipper pattern
+- play on probability if players are more than 3, as the player who just spoke gets higher probability
+- interleave pauses when needed.
+- thresholding scores for coherence and non-mono.
